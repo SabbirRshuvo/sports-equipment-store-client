@@ -30,7 +30,7 @@ const Login = () => {
       .catch(() => {
         Swal.fire({
           title: "Error!",
-          text: `passoword not matching `,
+          text: `username && passoword not matching,  `,
           icon: "error",
           confirmButtonColor: "#d33",
           confirmButtonText: "Try Again",

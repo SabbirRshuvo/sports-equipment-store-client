@@ -5,11 +5,11 @@ import { Link } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { users, handleSignOut } = useContext(AuthContext);
+  const { user, handleSignOut } = useContext(AuthContext);
+
   return (
     <nav className="shadow-md bg-gradient-to-r from-orange-500 to-indigo-500 text-white">
       <div className="navbar container mx-auto py-3 px-4 flex items-center justify-between">
-        {/* Left Side - Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img
             src={logo}
@@ -18,8 +18,6 @@ const Navbar = () => {
           />
           <span className="text-lg tracking-wide">Sports</span>
         </Link>
-
-        {/* Center Links - Desktop */}
         <div className="hidden md:flex gap-6 text-lg">
           <Link
             to="/"
@@ -46,14 +44,17 @@ const Navbar = () => {
             Equipment List
           </Link>
         </div>
-
-        {/* Right Side - Sign In Button (Hidden on Mobile) */}
         <div className="hidden md:flex">
-          {users ? (
+          {user ? (
             <div className="flex items-center gap-1">
               <span className="font-semibold">
-                {users.displayName || "User"}
+                {user.displayName || "User"}
               </span>
+              <img
+                src={user.photoURL || "image"}
+                alt="Profile"
+                className="w-10 h-10 rounded-full"
+              />
               <button onClick={handleSignOut} className="btn btn-error">
                 Logout
               </button>
@@ -68,7 +69,6 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost">
             {isOpen ? (
@@ -79,8 +79,6 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-
-      {/* Mobile Menu - Slide Down Effect */}
       <div
         className={`md:hidden bg-white text-gray-800 py-4 px-6 space-y-4 rounded-b-lg shadow-md transition-all duration-300 ${
           isOpen ? "block" : "hidden"
@@ -110,9 +108,26 @@ const Navbar = () => {
         >
           Equpment List
         </Link>
-        <button className="btn w-full bg-yellow-400 text-gray-900 hover:bg-yellow-500 transition-all shadow-md">
-          Sign In
-        </button>
+        {user ? (
+          <div className="flex items-center gap-1">
+            <span className="font-semibold">{user.displayName || "User"}</span>
+            <img
+              src={user.photoURL || "image"}
+              alt="Profile"
+              className="w-10 h-10 rounded-full"
+            />
+            <button onClick={handleSignOut} className="btn btn-error">
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            className="btn w-full bg-yellow-400 text-gray-900 hover:bg-yellow-500 transition-all px-6 shadow-md"
+          >
+            Sign In
+          </Link>
+        )}
       </div>
     </nav>
   );
