@@ -27,7 +27,7 @@ const routes = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/all_sports_equpment",
+        path: "/all_sports",
         element: <AllSportsEquipment />,
       },
       {
@@ -35,7 +35,7 @@ const routes = createBrowserRouter([
         element: <AddEquipment />,
       },
       {
-        path: "/my_equpment",
+        path: "/equipment_list",
         element: <MyEquipment />,
       },
     ],

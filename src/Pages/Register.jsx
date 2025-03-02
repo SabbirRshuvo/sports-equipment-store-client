@@ -1,31 +1,60 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HiOutlineLockClosed, HiOutlineMail } from "react-icons/hi";
 import { Link } from "react-router";
 import { FaEye, FaEyeSlash, FaUser } from "react-icons/fa";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 const Register = () => {
+  const { handleRegister, users } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirmPass = form.confirmPass.value;
+    const profileData = { name, email, password, confirmPass };
+    console.log(profileData);
+    handleRegister(email, password, name)
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          title: "Registration Successful!",
+          text: `Welcome, ${users.displayName}!`,
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "OK",
+        });
+        form.reset();
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Error!",
+          text: error.message,
+          icon: "error",
+          confirmButtonColor: "#d33",
+          confirmButtonText: "Try Again",
+        });
+      });
+  };
 
   return (
     <>
-      <div className="flex gap-6 bg-gray-50">
-        <div className="min-h-screen flex items-center justify-center  px-4 w-full">
-          <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-            {/* Logo */}
+      <div className="flex gap-6   bg-gradient-to-t from-orange-200 to-indigo-200">
+        <div className="min-h-[500px] flex items-center justify-center  px-4 w-full my-10 ">
+          <div className="w-full max-w-md  p-8 rounded-lg shadow-xl bg-white">
             <div className="flex justify-center mb-4">
               <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center">
                 <HiOutlineMail className="text-white text-2xl" />
               </div>
             </div>
-
-            {/* Welcome Message */}
             <h2 className="text-2xl font-bold text-center">Sign Up</h2>
             <p className="text-gray-600 text-center">
               And lets get started with your free trial!
             </p>
-
-            {/* Form */}
-            <form className="mt-6 space-y-4">
-              {/* Email Input */}
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div>
                 <label className="block text-gray-700">User name</label>
                 <div className="relative">
@@ -36,7 +65,7 @@ const Register = () => {
                     type="text"
                     name="name"
                     placeholder="Enter your name"
-                    className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-orange-400 focus:outline-none "
                   />
                 </div>
               </div>
@@ -50,12 +79,10 @@ const Register = () => {
                     type="email"
                     name="email"
                     placeholder="Enter your email"
-                    className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-orange-400 focus:outline-none "
                   />
                 </div>
               </div>
-
-              {/* Password Input */}
               <div>
                 <label className="block text-gray-700">Password</label>
                 <div className="relative">
@@ -66,7 +93,7 @@ const Register = () => {
                     type={showPassword ? "text" : "password"}
                     placeholder="********"
                     name="password"
-                    className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-orange-400 focus:outline-none "
                   />
                   <button
                     type="button"
@@ -87,7 +114,7 @@ const Register = () => {
                     type={showPassword ? "text" : "password"}
                     placeholder="********"
                     name="confirmPass"
-                    className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-orange-400 focus:outline-none "
                   />
                   <button
                     type="button"
@@ -98,9 +125,7 @@ const Register = () => {
                   </button>
                 </div>
               </div>
-
-              {/* Sign In Button */}
-              <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 cursor-pointer">
+              <button className="w-full bg-purple-500 text-white py-2 rounded-md hover:bg-purple-700 cursor-pointer transition-colors">
                 Sign Up
               </button>
             </form>
@@ -111,9 +136,6 @@ const Register = () => {
               </Link>
             </p>
           </div>
-        </div>
-        <div className="min-h-screen  items-center justify-center   w-full hidden md:flex">
-          <img src="" alt="" className="" />
         </div>
       </div>
     </>
