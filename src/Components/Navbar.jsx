@@ -6,7 +6,6 @@ import { AuthContext } from "../Provider/AuthProvider";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, handleSignOut } = useContext(AuthContext);
-
   return (
     <nav className="shadow-md bg-gradient-to-r from-orange-500 to-indigo-500 text-white">
       <div className="navbar container mx-auto py-3 px-4 flex items-center justify-between">
@@ -46,18 +45,30 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex">
           {user ? (
-            <div className="flex items-center gap-1">
-              <span className="font-semibold">
-                {user.displayName || "User"}
-              </span>
-              <img
-                src={user.photoURL || "image"}
-                alt="Profile"
-                className="w-10 h-10 rounded-full"
-              />
-              <button onClick={handleSignOut} className="btn btn-error">
-                Logout
-              </button>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar "
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={user.photoURL}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-slate-500 text-white rounded-box z-1 mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <a>{user.displayName}</a>
+                </li>
+                <li>
+                  <button onClick={handleSignOut}>Logout</button>
+                </li>
+              </ul>
             </div>
           ) : (
             <Link
@@ -109,16 +120,27 @@ const Navbar = () => {
           Equpment List
         </Link>
         {user ? (
-          <div className="flex items-center gap-1">
-            <span className="font-semibold">{user.displayName || "User"}</span>
-            <img
-              src={user.photoURL || "image"}
-              alt="Profile"
-              className="w-10 h-10 rounded-full"
-            />
-            <button onClick={handleSignOut} className="btn btn-error">
-              Logout
-            </button>
+          <div className="dropdown dropdown-start">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar "
+            >
+              <div className="w-10 rounded-full">
+                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-slate-500  rounded-box z-1 mt-3 w-52 p-2 shadow text-white"
+            >
+              <li>
+                <a>{user.displayName}</a>
+              </li>
+              <li>
+                <button onClick={handleSignOut}>Logout</button>
+              </li>
+            </ul>
           </div>
         ) : (
           <Link
