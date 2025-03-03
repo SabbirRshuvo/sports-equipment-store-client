@@ -53,7 +53,7 @@ const Banner = () => {
   const goToSlide = (index) => setCurrentIndex(index);
 
   return (
-    <div className="relative  h-[400px] sm:h-[500px] overflow-hidden  w-10/12 mx-auto">
+    <div className="relative  h-[500px] sm:h-[400px] overflow-hidden  w-10/12 mx-auto shadow-md rounded-xl">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}

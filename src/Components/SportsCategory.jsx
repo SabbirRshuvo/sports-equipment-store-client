@@ -45,7 +45,7 @@ const SportsCategory = () => {
     },
   ];
   return (
-    <div className="py-12 bg-gradient-to-r from-indigo-100 to-purple-100">
+    <div className="py-12 ">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-6">
           Sports Categories

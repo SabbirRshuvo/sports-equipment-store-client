@@ -8,6 +8,7 @@ import AllSportsEquipment from "../Pages/AllSportsEquipment";
 import AddEquipment from "../Pages/AddEquipment";
 import MyEquipment from "../Pages/MyEquipment";
 import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
+import EquipmentDetails from "../Pages/EquipmentDetails";
 
 const routes = createBrowserRouter([
   {
@@ -29,11 +30,18 @@ const routes = createBrowserRouter([
       },
       {
         path: "/all_sports",
+        element: <AllSportsEquipment />,
+        loader: () => fetch("http://localhost:3000/add_equipment"),
+      },
+      {
+        path: "/equipment_details/:id",
         element: (
           <PrivateRoutes>
-            <AllSportsEquipment />
+            <EquipmentDetails />
           </PrivateRoutes>
         ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/add_equipment/${params.id}`),
       },
       {
         path: "/add_equpment",

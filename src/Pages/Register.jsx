@@ -41,8 +41,8 @@ const Register = () => {
 
   return (
     <>
-      <div className="flex gap-6   bg-gradient-to-t from-orange-200 to-indigo-200">
-        <div className="min-h-[500px] flex items-center justify-center  px-4 w-full my-10 ">
+      <div className="flex gap-6 ">
+        <div className="min-h-[500px] flex items-center justify-center  px-4 w-full my-10">
           <div className="w-full max-w-md  p-8 rounded-lg shadow-xl bg-white">
             <div className="flex justify-center mb-4">
               <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center">

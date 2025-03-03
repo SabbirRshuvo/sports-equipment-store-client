@@ -67,7 +67,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex gap-6   bg-gradient-to-b from-orange-200 to-indigo-200">
+      <div className="flex gap-6   ">
         <div className="min-h-[500px] my-10 flex items-center justify-center  px-4 w-full">
           <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
             <div className="flex justify-center mb-4">
