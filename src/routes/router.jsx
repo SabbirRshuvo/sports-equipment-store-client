@@ -52,12 +52,13 @@ const routes = createBrowserRouter([
         ),
       },
       {
-        path: "/equipment_list",
+        path: "/users_list",
         element: (
           <PrivateRoutes>
             <MyEquipment />
           </PrivateRoutes>
         ),
+        loader: () => fetch("http://localhost:3000/users_list"),
       },
     ],
   },

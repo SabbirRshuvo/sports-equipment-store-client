@@ -15,10 +15,21 @@ const Register = () => {
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
-    const profileData = { name, email, photo, password };
-    console.log(profileData);
+
     handleRegister(email, password, name, photo)
       .then(() => {
+        const profileData = { name, email, photo, password };
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(profileData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
         Swal.fire({
           title: "Registration Successful!",
           text: "Welcome to our website",
@@ -108,8 +119,8 @@ const Register = () => {
                     placeholder="********"
                     name="password"
                     className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-orange-400 focus:outline-none "
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                    title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                    // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    // title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                     required
                   />
                   <button

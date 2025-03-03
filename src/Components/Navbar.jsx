@@ -37,7 +37,7 @@ const Navbar = () => {
             Add Equipment
           </Link>
           <Link
-            to="/equipment_list"
+            to="/users_list"
             className="btn btn-ghost hover:text-green-600  transition-all"
           >
             Equipment List
