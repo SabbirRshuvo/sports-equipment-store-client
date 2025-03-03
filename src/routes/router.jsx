@@ -7,6 +7,7 @@ import Login from "../Pages/Login";
 import AllSportsEquipment from "../Pages/AllSportsEquipment";
 import AddEquipment from "../Pages/AddEquipment";
 import MyEquipment from "../Pages/MyEquipment";
+import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
 
 const routes = createBrowserRouter([
   {
@@ -28,15 +29,27 @@ const routes = createBrowserRouter([
       },
       {
         path: "/all_sports",
-        element: <AllSportsEquipment />,
+        element: (
+          <PrivateRoutes>
+            <AllSportsEquipment />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/add_equpment",
-        element: <AddEquipment />,
+        element: (
+          <PrivateRoutes>
+            <AddEquipment />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/equipment_list",
-        element: <MyEquipment />,
+        element: (
+          <PrivateRoutes>
+            <MyEquipment />
+          </PrivateRoutes>
+        ),
       },
     ],
   },

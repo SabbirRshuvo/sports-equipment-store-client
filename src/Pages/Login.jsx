@@ -2,12 +2,15 @@ import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { HiOutlineLockClosed, HiOutlineMail } from "react-icons/hi";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 const Login = () => {
   const { handleSignIn, googleSignIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -25,6 +28,7 @@ const Login = () => {
           confirmButtonColor: "#3085d6",
           confirmButtonText: "OK",
         });
+        navigate(location.state?.from);
         form.reset();
       })
       .catch(() => {
