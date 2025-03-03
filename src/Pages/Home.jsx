@@ -1,7 +1,47 @@
+/* eslint-disable no-unused-vars */
+import { motion } from "framer-motion";
+
+import Banner from "../Components/Banner";
+import FeaturedProducts from "../Components/FeaturedProducts";
+import ProductSection from "../Components/ProductSection";
+import SportsCategory from "../Components/SportsCategory";
+import Testimonials from "../Components/Testimonials";
+
+const MotionSection = ({ children, delay }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 const Home = () => {
   return (
     <div>
-      <h2></h2>
+      <MotionSection delay={0.2}>
+        <Banner />
+      </MotionSection>
+
+      <MotionSection delay={0.6}>
+        <ProductSection />
+      </MotionSection>
+
+      <MotionSection delay={0.4}>
+        <SportsCategory />
+      </MotionSection>
+
+      <MotionSection delay={0.4}>
+        <FeaturedProducts />
+      </MotionSection>
+
+      <MotionSection delay={0.4}>
+        <Testimonials />
+      </MotionSection>
     </div>
   );
 };

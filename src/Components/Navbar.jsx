@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, handleSignOut } = useContext(AuthContext);
   return (
-    <nav className="shadow-md bg-gradient-to-r from-orange-500 to-indigo-500 text-white">
+    <nav className="shadow-md bg-gradient-to-r from-orange-500 to-indigo-500 text-white fixed top-0 left-0 w-full z-50">
       <div className="navbar container mx-auto py-3 px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <img
