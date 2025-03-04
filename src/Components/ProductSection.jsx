@@ -1,74 +1,85 @@
 /* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 const ProductSection = () => {
   const products = [
     {
       id: 1,
-      title: "Heavy-Duty Metal Shelving Rack",
+      title: "Professional Basketball Hoop",
       description:
-        "Durable industrial storage rack with 5 adjustable shelves, perfect for warehouses and retail stores.",
-      image:
-        "https://i.ibb.co.com/S46fTNRs/craig-lovelidge-AZJMAXn-Hh-Wc-unsplash.jpg",
+        "Adjustable height, shatterproof backboard, and durable rim for indoor and outdoor play.",
+      image: "https://i.ibb.co.com/PGKBFHvt/2150847360.jpg",
     },
     {
       id: 2,
-      title: "Point of Sale (POS) System",
+      title: "Premium Soccer Ball",
       description:
-        "Complete POS system with touchscreen monitor, receipt printer, and barcode scanner for efficient transactions.",
-      image:
-        "https://i.ibb.co.com/bj8D4DH5/blake-wisz-t-E6th1h6-Bfk-unsplash.jpg",
+        "FIFA-approved match ball with high-quality PU leather and excellent grip for all weather conditions.",
+      image: "https://i.ibb.co.com/Q7VjDHqZ/2632436-378985-PBQIF1-101.jpg",
     },
     {
       id: 3,
-      title: "Commercial Display Refrigerator",
+      title: "Tennis Racket Set",
       description:
-        "Glass-door display fridge with LED lighting, ideal for showcasing beverages and perishable items.",
-
-      image: "https://i.ibb.co.com/Fb5sg4bm/2149445491.jpg",
+        "Lightweight graphite frame racket with anti-slip grip and two tennis balls included.",
+      image:
+        "https://i.ibb.co.com/DffsDYBF/alicja-gancarz-wv-DELs-J-E20-unsplash.jpg",
     },
     {
       id: 4,
-      title: "Electronic Weighing Scale",
+      title: "Adjustable Dumbbell Set",
       description:
-        "High-precision digital weighing scale with LCD display, suitable for grocery and retail stores.",
-
-      image: "https://i.ibb.co.com/mFtR41f9/5404344-54858.jpg",
+        "Compact, all-in-one adjustable dumbbells ranging from 5-50 lbs, perfect for home workouts.",
+      image: "https://i.ibb.co.com/dJ7F6tCM/2151114124.jpg",
+    },
+    {
+      id: 5,
+      title: "Boxing Gloves & Punching Bag",
+      description:
+        "Durable PU leather gloves with shock-absorbing padding and heavy-duty punching bag.",
+      image: "https://i.ibb.co.com/Y7vfRRkz/2148353090.jpg",
+    },
+    {
+      id: 6,
+      title: "Foldable Treadmill",
+      description:
+        "Space-saving treadmill with LCD display, speed control, and multiple workout modes.",
+      image: "https://i.ibb.co.com/Wpd25DG9/2150164765.jpg",
     },
   ];
   return (
-    <div className="py-12 bg-gradient-to-r from-orange-100 to-indigo-100">
-      <div className="max-w-6xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">
-          Products Section
+    <div className="py-16  rounded-xl">
+      <div className="max-w-6xl mx-auto px-6 text-center">
+        <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
+          Our Products
         </h2>
-        <p className="text-gray-600 mb-10">
-          Discover our top-quality store equipment designed for efficiency and
-          durability.
+        <p className="text-gray-600 text-lg mb-12">
+          Premium store equipment for efficiency & durability.
         </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {products.map((product, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {products.map((product) => (
             <motion.div
               key={product.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+              className="shadow-lg rounded-2xl p-6 transition-all duration-300 bg-white flex flex-col justify-between h-full"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
               whileHover={{ scale: 1.05 }}
             >
               <img
                 src={product.image}
                 alt={product.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-52 object-cover rounded-xl"
               />
-              <div className="p-5">
-                <h3 className="text-lg font-semibold text-gray-800">
+              <div className="flex flex-col flex-grow">
+                <h3 className="text-lg font-semibold text-gray-900 mt-4">
                   {product.title}
                 </h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  {product.description}
-                </p>
               </div>
+              <Link to={`/product/${product.id}`} state={{ product }}>
+                <button className="mt-4 btn btn-accent w-full">
+                  View Details
+                </button>
+              </Link>
             </motion.div>
           ))}
         </div>

@@ -1,70 +1,86 @@
 /* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
-import { Link, useLoaderData } from "react-router";
+import React, { useState } from "react";
+import { useLoaderData } from "react-router";
 import { FaEdit, FaTrash } from "react-icons/fa";
-
+import Swal from "sweetalert2";
 const MyEquipment = () => {
-  const users = useLoaderData();
-  console.log(users);
+  const equipmentList = useLoaderData();
+  const [deletedData, setDeletedData] = useState(equipmentList);
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/add_equipment/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            const newData = deletedData.filter((item) => id !== item._id);
+            setDeletedData(newData);
+          });
+      }
+    });
+  };
+  console.log(equipmentList);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-5xl mx-auto p-6 bg-gradient-to-l from-purple-200 to-orange-200 backdrop-blur-lg shadow-lg rounded-2xl border border-gray-400 mt-12 mb-12"
-    >
-      <h2 className="text-2xl font-semibold text-black mb-6 text-center">
-        All Sports Equipment
-      </h2>
-
-      <div className="overflow-x-auto">
-        <table className="table table-zebra w-full">
-          <thead>
-            <tr className="text-white bg-blue-600">
-              <th>#</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.length > 0 ? (
-              users.map((item, index) => (
-                <tr key={item._id} className="hover">
-                  <td>{index + 1}</td>
-
-                  <td>
-                    <img
-                      src={item.photo}
-                      alt=""
-                      className="w-12 h-12 object-cover rounded"
-                    />
-                  </td>
-                  <td>{item.name}</td>
-                  <td>{item.email}</td>
-                  <td className="flex gap-2 w-1/2">
-                    <Link to="/" className="btn  btn-sm">
-                      <FaEdit />
-                    </Link>
-                    <button className="bg-red-500 p-2 rounded-md text-black shadow-md cursor-pointer">
-                      <FaTrash />
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="6" className="text-center text-black py-4">
-                  No Equipment Available
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+    <div className="py-16  rounded-xl">
+      <div className="max-w-6xl mx-auto px-6 text-center">
+        <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
+          My Equipment List
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {deletedData.map((item) => (
+            <motion.div
+              key={item._id}
+              className="shadow-lg rounded-2xl p-6 transition-all duration-300 bg-white flex flex-col justify-between h-full"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-52 object-cover rounded-xl"
+              />
+              <div className="flex-1 text-center md:text-left my-2 ">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {item.categoryName}
+                </h3>
+                <p className="text-sm font-medium text-gray-700 mt-1">
+                  Price: {item.price}
+                </p>
+              </div>
+              <div className="flex space-x-3">
+                <button className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 cursor-pointer">
+                  <FaEdit className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => handleDelete(item._id)}
+                  className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all duration-300 cursor-pointer"
+                >
+                  <FaTrash className="h-5 w-5" />
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

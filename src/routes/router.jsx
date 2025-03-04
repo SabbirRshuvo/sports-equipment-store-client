@@ -9,6 +9,7 @@ import AddEquipment from "../Pages/AddEquipment";
 import MyEquipment from "../Pages/MyEquipment";
 import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
 import EquipmentDetails from "../Pages/EquipmentDetails";
+import ProductDeatils from "../Pages/ProductDeatils";
 
 const routes = createBrowserRouter([
   {
@@ -52,13 +53,17 @@ const routes = createBrowserRouter([
         ),
       },
       {
-        path: "/users_list",
+        path: "/equipment_list",
         element: (
           <PrivateRoutes>
             <MyEquipment />
           </PrivateRoutes>
         ),
-        loader: () => fetch("http://localhost:3000/users_list"),
+        loader: () => fetch("http://localhost:3000/add_equipment"),
+      },
+      {
+        path: "/product/:id",
+        element: <ProductDeatils />,
       },
     ],
   },
