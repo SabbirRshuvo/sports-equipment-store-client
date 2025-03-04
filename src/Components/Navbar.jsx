@@ -6,6 +6,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, handleSignOut } = useContext(AuthContext);
+
   return (
     <nav className="shadow-md bg-gradient-to-r from-green-400 to-purple-600 text-white fixed top-0 left-0 w-full z-50">
       <div className="navbar container mx-auto py-3 px-4 flex items-center justify-between">

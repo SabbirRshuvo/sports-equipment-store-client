@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { AiOutlinePlusCircle, AiOutlineUpload } from "react-icons/ai";
 import { FaStar, FaBoxOpen } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
+import { useLoaderData } from "react-router";
+import { useState } from "react";
 import Swal from "sweetalert2";
+const UpdateEquipment = () => {
+  const equipment = useLoaderData();
+  const { _id } = equipment;
 
-const AddEquipment = () => {
   const [formData, setFormData] = useState({
     itemName: "",
     categoryName: "",
@@ -30,8 +33,9 @@ const AddEquipment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    fetch("http://localhost:3000/add_equipment", {
-      method: "POST",
+    console.log(_id);
+    fetch(`http://localhost:3000/add_equipment/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -40,27 +44,16 @@ const AddEquipment = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
-            text: "Your operation is successful.",
+            text: "updated  successful.",
             icon: "success",
             confirmButtonText: "OK",
             confirmButtonColor: "#16a34a",
           });
         }
       });
-    setFormData({
-      itemName: "",
-      categoryName: "",
-      description: "",
-      price: "",
-      rating: "",
-      customization: "",
-      processingTime: "",
-      stockStatus: "",
-      image: "",
-    });
   };
 
   return (
@@ -69,11 +62,11 @@ const AddEquipment = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-3xl mx-auto p-8  bg-gradient-to-br from-blue-200 to-purple-200  backdrop-blur-lg shadow-lg rounded-2xl border border-gray-200 mt-12 mb-12"
+        className="max-w-3xl mx-auto p-8 bg-gradient-to-br from-purple-200 to-blue-200 backdrop-blur-lg shadow-lg rounded-2xl border border-gray-200 mt-12 mb-12"
       >
         <h2 className="text-2xl font-semibold text-black mb-6 flex items-center gap-2">
           <AiOutlinePlusCircle className="text-blue-500" size={26} />
-          Add New Equipment
+          Update Equipment
         </h2>
         <form
           onSubmit={handleSubmit}
@@ -194,10 +187,10 @@ const AddEquipment = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="btn btn-info text-slate-600 flex items-center gap-2 px-5 py-2 text-lg"
+              className="btn btn-accent text-slate-600 flex items-center gap-2 px-5 py-2 text-lg"
             >
               <AiOutlinePlusCircle size={20} />
-              Add Equipment
+              Update Equipment
             </motion.button>
           </div>
         </form>
@@ -206,4 +199,4 @@ const AddEquipment = () => {
   );
 };
 
-export default AddEquipment;
+export default UpdateEquipment;

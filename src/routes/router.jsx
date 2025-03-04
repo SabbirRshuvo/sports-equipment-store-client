@@ -10,6 +10,7 @@ import MyEquipment from "../Pages/MyEquipment";
 import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
 import EquipmentDetails from "../Pages/EquipmentDetails";
 import ProductDeatils from "../Pages/ProductDeatils";
+import UpdateEquipment from "../Pages/UpdateEquipment";
 
 const routes = createBrowserRouter([
   {
@@ -64,6 +65,17 @@ const routes = createBrowserRouter([
       {
         path: "/product/:id",
         element: <ProductDeatils />,
+      },
+
+      {
+        path: "/update_equipment/:id",
+        element: (
+          <PrivateRoutes>
+            <UpdateEquipment />
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/add_equipment/${params.id}`),
       },
     ],
   },

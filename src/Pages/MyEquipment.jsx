@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 const MyEquipment = () => {
@@ -40,9 +40,15 @@ const MyEquipment = () => {
   return (
     <div className="py-16  rounded-xl">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
-          My Equipment List
-        </h2>
+        {deletedData.length > 0 ? (
+          <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
+            My Equipment List
+          </h2>
+        ) : (
+          <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
+            No Equipment Available here.
+          </h2>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {deletedData.map((item) => (
             <motion.div
@@ -62,13 +68,16 @@ const MyEquipment = () => {
                   {item.categoryName}
                 </h3>
                 <p className="text-sm font-medium text-gray-700 mt-1">
-                  Price: {item.price}
+                  Price: {item.price}$
                 </p>
               </div>
               <div className="flex space-x-3">
-                <button className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 cursor-pointer">
+                <Link
+                  to={`/update_equipment/${item._id}`}
+                  className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 cursor-pointer"
+                >
                   <FaEdit className="h-5 w-5" />
-                </button>
+                </Link>
                 <button
                   onClick={() => handleDelete(item._id)}
                   className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all duration-300 cursor-pointer"
