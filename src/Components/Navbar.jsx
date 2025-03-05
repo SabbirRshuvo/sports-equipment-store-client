@@ -112,13 +112,13 @@ const Navbar = () => {
           to="/add_equpment"
           className="block text-lg py-2 border-b border-gray-300 hover:text-orange-600"
         >
-          Add Equpment
+          Add Equipment
         </Link>
         <Link
           to="/equipment_list"
           className="block text-lg py-2 border-b border-gray-300 hover:text-orange-600"
         >
-          Equpment List
+          Equipment List
         </Link>
         {user ? (
           <div className="dropdown dropdown-start">
