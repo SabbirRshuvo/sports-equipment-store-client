@@ -40,7 +40,6 @@ const MyEquipment = () => {
       }
     });
   };
-  console.log(equipmentList);
   return (
     <Slide direction="left" triggerOnce>
       <div className="py-16  rounded-xl">

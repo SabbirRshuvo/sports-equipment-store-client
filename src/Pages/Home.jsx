@@ -6,6 +6,7 @@ import FeaturedProducts from "../Components/FeaturedProducts";
 import ProductSection from "../Components/ProductSection";
 import SportsCategory from "../Components/SportsCategory";
 import Testimonials from "../Components/Testimonials";
+import { useState } from "react";
 
 const MotionSection = ({ children, delay }) => {
   return (
@@ -21,8 +22,18 @@ const MotionSection = ({ children, delay }) => {
 };
 
 const Home = () => {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
-    <div>
+    <div className={`theme-${theme}`}>
+      <button className="btn btn-circle btn-outline" onClick={toggleTheme}>
+        {theme === "light" ? "🌙" : "☀️"}
+      </button>
+      {/* Your existing content */}
       <MotionSection delay={0.1}>
         <Banner />
       </MotionSection>

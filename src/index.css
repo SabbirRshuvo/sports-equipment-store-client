@@ -5,3 +5,12 @@
 body {
   font-family: "Montserrat", sans-serif;
 }
+
+.theme-light {
+  color: #333333;
+}
+
+.theme-dark {
+  background-color: #312f2f5e;
+  color: #ffffff;
+}
