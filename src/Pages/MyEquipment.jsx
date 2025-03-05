@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Slide } from "react-awesome-reveal";
 const MyEquipment = () => {
   const equipmentList = useLoaderData();
   const [deletedData, setDeletedData] = useState(equipmentList);
@@ -41,58 +42,60 @@ const MyEquipment = () => {
   };
   console.log(equipmentList);
   return (
-    <div className="py-16  rounded-xl">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        {deletedData.length > 0 ? (
-          <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
-            My Equipment List
-          </h2>
-        ) : (
-          <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
-            No Equipment Available here.
-          </h2>
-        )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {deletedData.map((item) => (
-            <motion.div
-              key={item._id}
-              className="shadow-lg rounded-2xl p-6 transition-all duration-300 bg-white flex flex-col justify-between h-full"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-52 object-cover rounded-xl"
-              />
-              <div className="flex-1 text-center md:text-left my-2 ">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {item.categoryName}
-                </h3>
-                <p className="text-sm font-medium text-gray-700 mt-1">
-                  Price: {item.price}$
-                </p>
-              </div>
-              <div className="flex space-x-3">
-                <Link
-                  to={`/update_equipment/${item._id}`}
-                  className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 cursor-pointer"
-                >
-                  <FaEdit className="h-5 w-5" />
-                </Link>
-                <button
-                  onClick={() => handleDelete(item._id)}
-                  className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all duration-300 cursor-pointer"
-                >
-                  <FaTrash className="h-5 w-5" />
-                </button>
-              </div>
-            </motion.div>
-          ))}
+    <Slide direction="left" triggerOnce>
+      <div className="py-16  rounded-xl">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          {deletedData.length > 0 ? (
+            <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
+              My Equipment List
+            </h2>
+          ) : (
+            <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
+              No Equipment Available here.
+            </h2>
+          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {deletedData.map((item) => (
+              <motion.div
+                key={item._id}
+                className="shadow-lg rounded-2xl p-6 transition-all duration-300 bg-white flex flex-col justify-between h-full"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-52 object-cover rounded-xl"
+                />
+                <div className="flex-1 text-center md:text-left my-2 ">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {item.categoryName}
+                  </h3>
+                  <p className="text-sm font-medium text-gray-700 mt-1">
+                    Price: {item.price}$
+                  </p>
+                </div>
+                <div className="flex space-x-3">
+                  <Link
+                    to={`/update_equipment/${item._id}`}
+                    className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 cursor-pointer"
+                  >
+                    <FaEdit className="h-5 w-5" />
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all duration-300 cursor-pointer"
+                  >
+                    <FaTrash className="h-5 w-5" />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </Slide>
   );
 };
 

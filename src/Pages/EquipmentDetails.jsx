@@ -2,6 +2,7 @@
 import React from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import { Fade } from "react-awesome-reveal";
 
 const EquipmentDetails = () => {
   const item = useLoaderData();
@@ -25,10 +26,12 @@ const EquipmentDetails = () => {
         />
 
         <div className="grid grid-cols-2 gap-6 text-gray-700">
-          <p className="font-medium">
-            <strong className="text-gray-900">Category:</strong>{" "}
-            {item.categoryName}
-          </p>
+          <Fade>
+            <p className="font-medium">
+              <strong className="text-gray-900">Category:</strong>{" "}
+              {item.categoryName}
+            </p>
+          </Fade>
           <p className="font-medium">
             <strong className="text-gray-900">Price:</strong> ${item.price}
           </p>
