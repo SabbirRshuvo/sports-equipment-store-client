@@ -23,23 +23,23 @@ const MotionSection = ({ children, delay }) => {
 const Home = () => {
   return (
     <div>
-      <MotionSection delay={0.2}>
+      <MotionSection delay={0.1}>
         <Banner />
       </MotionSection>
 
-      <MotionSection delay={0.6}>
+      <MotionSection delay={0.4}>
         <ProductSection />
       </MotionSection>
 
-      <MotionSection delay={0.4}>
+      <MotionSection delay={0.3}>
         <SportsCategory />
       </MotionSection>
 
-      <MotionSection delay={0.4}>
+      <MotionSection delay={0.3}>
         <FeaturedProducts />
       </MotionSection>
 
-      <MotionSection delay={0.4}>
+      <MotionSection delay={0.2}>
         <Testimonials />
       </MotionSection>
     </div>
