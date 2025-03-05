@@ -1,12 +1,10 @@
-# React + Vite
+#Sports Equipment Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Links URL: https://sports-equipment-store-3bdd3.web.app/
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+- Feature 1: It is a Sports Equipment Online Store with responsive website.
+- Feature 2: If any user create an account and login then the user will see the store products
+- Feature 3: After sign in anyone can added there data in a form page
+- Feature 4: You can added a data and you can see details the specific data and delete the data
+- Feature 5: After sign in anyone can update the form data
