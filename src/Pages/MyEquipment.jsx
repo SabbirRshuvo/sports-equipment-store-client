@@ -19,9 +19,12 @@ const MyEquipment = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/add_equipment/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://sports-equipment-store-server-ecru.vercel.app/add_equipment/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

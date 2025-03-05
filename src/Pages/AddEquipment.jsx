@@ -30,13 +30,16 @@ const AddEquipment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    fetch("http://localhost:3000/add_equipment", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      "https://sports-equipment-store-server-ecru.vercel.app/add_equipment",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

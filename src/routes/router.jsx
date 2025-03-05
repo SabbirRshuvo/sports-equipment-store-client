@@ -33,7 +33,10 @@ const routes = createBrowserRouter([
       {
         path: "/all_sports",
         element: <AllSportsEquipment />,
-        loader: () => fetch("http://localhost:3000/add_equipment"),
+        loader: () =>
+          fetch(
+            "https://sports-equipment-store-server-ecru.vercel.app/add_equipment"
+          ),
       },
       {
         path: "/equipment_details/:id",
@@ -43,7 +46,9 @@ const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/add_equipment/${params.id}`),
+          fetch(
+            `https://sports-equipment-store-server-ecru.vercel.app/add_equipment/${params.id}`
+          ),
       },
       {
         path: "/add_equpment",
@@ -60,7 +65,10 @@ const routes = createBrowserRouter([
             <MyEquipment />
           </PrivateRoutes>
         ),
-        loader: () => fetch("http://localhost:3000/add_equipment"),
+        loader: () =>
+          fetch(
+            "https://sports-equipment-store-server-ecru.vercel.app/add_equipment"
+          ),
       },
       {
         path: "/product/:id",
@@ -75,7 +83,9 @@ const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/add_equipment/${params.id}`),
+          fetch(
+            `https://sports-equipment-store-server-ecru.vercel.app/add_equipment/${params.id}`
+          ),
       },
     ],
   },

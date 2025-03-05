@@ -34,13 +34,16 @@ const UpdateEquipment = () => {
     e.preventDefault();
     console.log(formData);
     console.log(_id);
-    fetch(`http://localhost:3000/add_equipment/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      `https://sports-equipment-store-server-ecru.vercel.app/add_equipment/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

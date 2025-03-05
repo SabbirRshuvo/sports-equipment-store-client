@@ -1,8 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Link, useLoaderData } from "react-router";
 const AllSportsEquipment = () => {
   const equipment = useLoaderData();
+
+  const [sortedEquipment, setSortedEquipment] = useState([...equipment]);
+
+  const sortByPrice = () => {
+    const sorted = [...sortedEquipment].sort((a, b) => a.price - b.price);
+    setSortedEquipment(sorted);
+  };
 
   return (
     <motion.div
@@ -14,6 +22,16 @@ const AllSportsEquipment = () => {
       <h2 className="text-3xl font-semibold text-black mb-6 text-center">
         All Sports Equipment
       </h2>
+
+      {/* Sorting Buttons */}
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={sortByPrice}
+          className="bg-gradient-to-br from-red-400 to-blue-400 text-white px-4 py-2 rounded-md transition-all cursor-pointer"
+        >
+          Sort by Price
+        </button>
+      </div>
 
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-gray-300 rounded-lg">
@@ -27,8 +45,8 @@ const AllSportsEquipment = () => {
             </tr>
           </thead>
           <tbody>
-            {equipment.length > 0 ? (
-              equipment.map((item, index) => (
+            {sortedEquipment.length > 0 ? (
+              sortedEquipment.map((item) => (
                 <tr
                   key={item._id}
                   className="hover:bg-gray-100 transition-colors"

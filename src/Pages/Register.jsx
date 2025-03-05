@@ -119,8 +119,8 @@ const Register = () => {
                     placeholder="********"
                     name="password"
                     className="w-full px-10 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-orange-400 focus:outline-none "
-                    // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                    // title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                     required
                   />
                   <button
